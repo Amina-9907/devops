@@ -9,8 +9,9 @@ export const sendRegisterNotificationMail = async (
   const transporter = createTransport(smtpTransport);
   try {
     const sentMail = await transporter.sendMail({
-      to: recipientEmails.join(", "), // list of receivers
-      subject: `[Heritage Notification] New Registration`, // Subject line
+      from: `heritage.africa <${smtpTransport.auth!.user}>`,
+      to: recipientEmails.join(", "),
+      subject: `[Heritage Notification] New Registration`,
       text: `New user registration:\n${JSON.stringify(body, null, 2)}`
     });
 
@@ -32,6 +33,7 @@ export const sendWelcomeMail = async (
   const transporter = createTransport(smtpTransport);
   try {
     const sentMail = await transporter.sendMail({
+      from: `heritage.africa <${smtpTransport.auth!.user}>`,
       to: args.email,
       subject: getSignupSubject(args.language),
       text: getSignupText({
