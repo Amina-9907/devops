@@ -21,7 +21,7 @@ import { useTranslations } from "next-intl";
 export default function Navbar() {
   const [isSticky, setIsSticky] = useState(false);
   const pathname = usePathname();
-  const dynamicStick = ["/"].includes(pathname);
+  const dynamicStick = ["/en/", "/fr/"].includes(pathname);
 
   const langParam = useParams().lang as string | undefined;
   const lang = getLang(langParam);
