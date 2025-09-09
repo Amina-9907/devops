@@ -35,11 +35,13 @@ export async function POST(request: Request) {
     return new Response(JSON.stringify({ error: "Email is required" }), { status: 400 });
   }
 
-
-  const mailSuccess = sendSubscribeWelcomeMail(transport, { language: body.language || "fr", email: body.email! }, recipientEmails)
+  const mailSuccess = sendSubscribeWelcomeMail(
+    transport,
+    { language: body.language || "fr", email: body.email! },
+    recipientEmails
+  )
     .then(() => {})
     .catch(() => {});
-
 
   return new Response(undefined, { status: mailSuccess ? 200 : 500 });
 }
